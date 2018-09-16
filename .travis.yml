@@ -1,5 +1,17 @@
 language: ruby
 rvm:
   - 2.5.1
+branches:
+  only:
+    - master
 install: bundle install
 script: bundle exec jekyll b
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  repo: git@github.com:Sheffield-Digital-Leadership-Meetup/sdlm-pages.git
+  on:
+    branch: master
+    local-dir: _site/
