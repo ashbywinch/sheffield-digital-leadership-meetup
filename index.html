@@ -35,10 +35,19 @@ layout: landing
 							<ul class="features">
 							{% for meetup in site.meetups %}
 								<li class="icon fa-{{ meetup.icon }}">
-									<h3>{{ meetup.title }}</h3>
+									<h3>
+{% if meetup.rsvp %}
+										<a href="{{ meetup.rsvp }}">{{ meetup.title }}</a>
+{% else %}
+										{{ meetup.title }}
+{% endif %}
+                  </h3>
 									<h4>{{ meetup.date | date_to_long_string }}, <br />{{ meetup.time }}</h4>
 									<p>{{ meetup.location }}</p>
 									<p>{{ meetup.content | markdownify }}</p>
+{% if meetup.rsvp %}
+									<a href="{{ meetup.rsvp }}">RSVP here</a>
+{% endif %}
 								</li>
 							{% endfor %}
 							</ul>
@@ -75,7 +84,9 @@ layout: landing
 				<!-- Three -->
 					<section id="three" class="wrapper style2 special">
 						<div class="inner">
-							<header class="major"><h2>Code of Conduct</h2></header>
+							<header class="major"><a id="CoC">
+								<h2>Code of Conduct</h2>
+							</a></header>
  							<p>SheffTechLeadership has committed to including, hearing and respecting the voices of everyone regardless of sex, gender identity or expression, sexual orientation, disability, physical appearance, age, body size, race, nationality, or religious beliefs.</p>
 
 <p>We do not tolerate harassment in any form. Harassment includes but is not limited to; offensive verbal or written comments related to sex, gender identity or expression, sexual orientation, disability, physical appearance, age, body size, race, nationality, or religious beliefs, deliberate intimidation, threats, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention. Sexual language and imagery is not appropriate for any SheffTechLeadership event or communication channel.</p>
